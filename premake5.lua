@@ -1,7 +1,7 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    staticruntime "off"
+    staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -9,15 +9,16 @@ project "ImGui"
 	files
 	{
 		"imconfig.h",
-		"imgui.h",
 		"imgui.cpp",
+		"imgui.h",
+		"imgui_demo.cpp",
 		"imgui_draw.cpp",
 		"imgui_internal.h",
+        "imgui_tables.cpp",
 		"imgui_widgets.cpp",
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
-		"imstb_truetype.h",
-		"imgui_demo.cpp"
+		"imstb_truetype.h"
 	}
 
 	filter "system:windows"
@@ -31,18 +32,15 @@ project "ImGui"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		staticruntime "On"
 		buildoptions "/MTd"
 		symbols "on"
 
 	filter "configurations:Release"
 		runtime "Release"
-		staticruntime "On"
 		buildoptions "/MT"
 		optimize "on"
 
 	filter "configurations:Dist"
 		runtime "Release"
-		staticruntime "On"
 		buildoptions "/MT"
 		optimize "on"
